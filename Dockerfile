@@ -6,11 +6,7 @@ ARG REGISTRATION_TOKEN
 RUN apt-get update && apt-get install -y curl jq
 
 # Copy the configuration file for GitLab Runner
-COPY config.toml /etc/gitlab-runner/config.toml.template
-
-# Copy and make the start script executable
-COPY ./entrypoint.sh ./
-RUN chmod +x /entrypoint.sh
+COPY config.toml /etc/gitlab-runner/config.toml
 
 # Environment variables for GitLab Runner registration
 ENV CI_SERVER_URL=https://gitlab.com/
@@ -20,7 +16,7 @@ ENV RUNNER_TAG_LIST=my-tag
 ENV REGISTRATION_TOKEN=${REGISTRATION_TOKEN}
 
 # Replace the token placeholder in the config.toml.template
-RUN sed -i "s/REPLACE_TOKEN/${REGISTRATION_TOKEN}/g" /etc/gitlab-runner/config.toml.template
+RUN sed -i "s/REPLACE_TOKEN/${REGISTRATION_TOKEN}/g" /etc/gitlab-runner/config.toml
 
 # Register the runner with the shell executor
 RUN gitlab-runner register --non-interactive \
