@@ -9,8 +9,8 @@ RUN apt-get update && apt-get install -y curl
 COPY config.toml /etc/gitlab-runner/config.toml.template
 
 # Copy and make the start script executable
-COPY ./start.sh ./
-RUN chmod +x /start.sh
+COPY ./entrypoint.sh ./
+RUN chmod +x /entrypoint.sh
 
 # Environment variables for GitLab Runner registration
 ENV CI_SERVER_URL=https://gitlab.com/
@@ -30,7 +30,7 @@ RUN gitlab-runner register --non-interactive \
     --executor $RUNNER_EXECUTOR \
     --tag-list $RUNNER_TAG_LIST
 
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Start the GitLab Runner
 CMD ["gitlab-runner", "run", "--user=gitlab-runner", "--working-directory=/home/gitlab-runner"]
