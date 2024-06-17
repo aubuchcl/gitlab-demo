@@ -1,0 +1,12 @@
+[[runners]]
+  name = "cycle-function-runner"
+  url = "https://gitlab.com/"
+  token = "REPLACE_TOKEN"
+  executor = "shell"
+  builds_dir = "/home/gitlab-runner/builds"
+  cache_dir = "/home/gitlab-runner/cache"
+
+[session_server]
+    listen_address = "[::]:8093"
+    advertise_address = "{{ADVERTISE_ADDRESS}}:8093"
+    session_timeout = 1800
