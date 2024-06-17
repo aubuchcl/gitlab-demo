@@ -7,7 +7,7 @@ set -euo pipefail
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
 
 # Replace the placeholder in the template with the actual IP address
-sed "s/{{ADVERTISE_ADDRESS}}/$IP_ADDRESS/" /etc/gitlab-runner/config.toml.template > /etc/gitlab-runner/config.toml
+# sed "s/{{ADVERTISE_ADDRESS}}/$IP_ADDRESS/" /etc/gitlab-runner/config.toml.template > /etc/gitlab-runner/config.toml
 
 echo "Updated config.toml with IP address: $IP_ADDRESS"
 echo "Executing command: $@"
