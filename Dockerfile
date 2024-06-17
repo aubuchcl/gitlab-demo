@@ -3,7 +3,7 @@ FROM gitlab/gitlab-runner:latest
 ARG REGISTRATION_TOKEN
 
 # Install any necessary dependencies
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl jq
 
 # Copy the configuration file for GitLab Runner
 COPY config.toml /etc/gitlab-runner/config.toml.template
