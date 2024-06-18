@@ -26,7 +26,6 @@ RUN gitlab-runner register --non-interactive \
     --executor $RUNNER_EXECUTOR \
     --tag-list $RUNNER_TAG_LIST
 
-ENTRYPOINT ["/entrypoint.sh"]
 
 # Start the GitLab Runner
-CMD ["gitlab-runner", "run", "--user=gitlab-runner", "--working-directory=/home/gitlab-runner"]
+CMD ["run", "--user=gitlab-runner", "--working-directory=/home/gitlab-runner"]
